@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="CSS/css.css">
+
+
+    <meta charset='utf-8' />
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <title>Earthquake Map </title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      #map {
+        height: 50%;
+        width: auto%;
+        position: inherit
+      }
+
+      html,
+      body,
+      #container {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: helvetica, arial, sans-serif;
+      }
+
+      #container .feed-heading {
+        height: 20px;
+        padding: 1em 0 0 1em;
+        margin: 0;
+      }
+
+      #feedColumn {
+        width: auto%;
+        float: left;
+        padding: 1em;
+      }
+
+      #feedSelector {
+        top: 1em;
+        left: 1em;
+        background-color: #blue;
+      }
+
+      .child-prop,
+      .feed-name,
+      .feed-date {
+        text-transform: capitalize;
+      }
+
+      .feed-date {
+        width: 50%;
+        border-bottom: 0.5px solid #999;
+        margin: 0.5em 0em 0.25em 0em;
+        padding-bottom: 0.2em;
+        font-weight: bold;
+      }
+
+      .feed-name {
+        padding: 0.5em;
+        margin: 0 0.5em 0 0;
+        background-color: #bdd5fc;
+        color: #000000;
+        border-radius: 0.3em;
+        cursor: pointer;
+        transition: all linear 0.1s;
+        border: none;
+        outline: none;
+        font-size: 1em;
+      }
+
+      .feed-name:hover {
+        background-color: #555;
+      }
+
+      .child-prop {
+        display: inline-block;
+        margin: 0 0 0.5em 0;
+      }
+
+    </style>
+  </head>
+
+  <!--Start Navigation-->
+
+  <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="Overview.html"><b><i>Data Visualisation Solutions</b></i></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item active">
+            <a class="nav-link" href="Overview.html">Overview</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="Earthquakes Map.html">Earthquakes Map</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="Weather Feed.html">Weather Feed</a>
+          </li>
+
+          <!-- Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Visualisations
+      </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="Pollution Level.html">Pollution Level View</a>
+              <a class="dropdown-item" href="Petition.html">Revoke Article 50 Petition</a>
+              <a class="dropdown-item" href="Artist Top Songs.html">Artist Top Songs</a>
+              <a class="dropdown-item" href="Population.html">World Population</a>
+            </div>
+          </li>
+
+
+          <!-- Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+       Tutorials
+      </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="Earthquake Map Tutorial.html">Earthquake Map Tutorial</a>
+              <a class="dropdown-item" href="Weather Feed Tutorial.html">Weather Feed Tutorial</a>
+              <a class="dropdown-item" href="Pollution Level Tutorial.html">Pollution Level View Tutorial</a>
+              <a class="dropdown-item" href="Petition Tutorial.html">Revoke Article 50 Petition Tutorial</a>
+              <a class="dropdown-item" href="Artist Top Songs Tutorial.html">Artist Top Songs Tutorial</a>
+              <a class="dropdown-item" href="PopulationTutorial.html">Population Tutorial</a>
+              <a class="dropdown-item" href="jstutorial.html">JavaScript Tutorial</a>
+            </div>
+          </li>
+
+
+
+          <li class="nav-item">
+            <a class="nav-link" href="About Authors.html">About Authors</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="Contact Us.html">Contact Us</a>
+          </li>
+
+
+        </ul>
+      </div>
+  </nav>
+
+  <body><br>
+    <h1>
+      <center><b>Eartquakes Activity Map</b></center>
+    </h1>
+    <p>
+      <center> Choose the magnitude of Earthquakes within displayed time scale and navigate through the map by scrolling for more details.<br> You can search more extra information for affected area by clicking on link provided which will take you to external
+        website.</center>
+    </p>
+
+
+    <!-- On our web page, show a link to the earthquake data. This is just for learning purposes. -->
+    <h3 class="feed-heading"></h3>
+    <div id="feedColumn">
+
+      <a href="http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php"></a>
+
+      <div id="feedSelector"></div>
+    </div>
+    <button type="button" id="earthquakes">Reset Map</button>
+    <div id="map"></div>
+
+    <script>
+      var map;
+      // window.location.href;
+      var theurl = window.location.toString();
+      //initMap() called when Google Maps API code is loaded - when web page is opened/refreshed 
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 2,
+          center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+          mapTypeId: 'terrain' // can be any valid type
+        });
+        google.maps.event.trigger(map, 'resize');
+      }
+
+      var thelocation;
+      var titleName;
+      $(document).ready(function() {
+
+        $('#earthquakes').click(function() {
+          // Set Google map  to its start state
+          map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 2,
+            center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+            mapTypeId: 'terrain' // can be any valid type
+          });
+          // The following uses JQuery library
+          $.ajax({
+            // The URL of the specific data required
+            url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
+
+            // Called if there is a problem loading the data
+            error: function() {
+              $('#info').html('<p>An error has occurred</p>');
+            },
+          });
+        });
+      });
+
+    </script>
+
+    <script>
+      //The following data is used when constructing buttons. You will have to extend this, based upon the feeds at: https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
+      var quakeFeeds = {
+        "past hour": {
+          "significant earthquakes": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_hour.geojson",
+          "all 4.5+": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_hour.geojson",
+          "all 2.5+": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_hour.geojson",
+          "all 1.0+": "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_hour.geojson",
+          "all earthquakes": "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson"
+        },
+        "past day": {
+          "significant earthquakes": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_day.geojson",
+          "all 4.5+": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
+          "all 2.5+": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
+          "all 1.0+": "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_day.geojson",
+          "all earthquakes": "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson"
+          // Add more...
+        },
+        "past week": {
+          "significant earthquakes": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson",
+          "all 4.5+": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson",
+          "all 2.5+": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson",
+          "all 1.0+": "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_week.geojson",
+          "all earthquakes": "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
+        },
+        "past month": {
+          "significant earthquakes": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson",
+          "all 4.5+": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson",
+          "all 2.5+": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson",
+          "all 1.0+": "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_month.geojson",
+          "all earthquakes": "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
+
+
+        }
+      };
+
+      /* Function to construct a set of web page buttons of class: 'feed-name' where each button has a stored URL property */
+      function makeChildProps(obj, currentProp) {
+        var childProps = '';
+
+        for (var prop in obj[currentProp]) {
+          var el = "<div class='child-prop'><button class='feed-name' data-feedurl='" + obj[currentProp][prop] + "'>" + prop + "</button></div>";
+          childProps += el;
+        }
+
+        return childProps;
+      }
+
+      /* construct the buttons (that include the geojson URL properties) */
+      for (var prop in quakeFeeds) {
+        if (!quakeFeeds.hasOwnProperty(prop)) {
+          continue;
+        }
+        $('#feedSelector').append("<div class='feed-date'>" + prop + "</div>" + makeChildProps(quakeFeeds, prop));
+        console.log(makeChildProps(quakeFeeds, prop));
+      }
+      /* end construction of buttons */
+
+      /* respond to a button press of any button of 'feed-name' class */
+      $('.feed-name').click(function(e) {
+        // Set Google map  to its start state
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 2,
+          center: new google.maps.LatLng(2.8, -187.3), // Center Map. Set this to any location that you like
+          mapTypeId: 'terrain' // can be any valid type
+        });
+        // We fetch the earthquake feed associated with the actual button that has been pressed. 
+        // We then plot locations on the map with the earthquake feeds.
+        $.ajax({
+          url: $(e.target).data('feedurl'), // The GeoJSON URL associated with a specific button was stored in the button's properties when the button was created
+
+          success: function(data) { // We've received the GeoJSON data
+            i = 0;
+            var places = []; // We store the names of earthquake locations in this array
+            var markers = []; // keep an array of Google Maps markers, to be used by the Google Maps clusterer
+            $.each(data.features, function(key, val) { // Just get a single value ('place') and save it in an array
+              places.push(val.properties.place); // Add a new earthquake location to the array.
+              // Get the lat and lng data for use in the markers
+              var coords = val.geometry.coordinates;
+              var latLng = new google.maps.LatLng(coords[1], coords[0]);
+              // Now create a new marker on the map
+              var marker = new google.maps.Marker({
+                position: latLng,
+                map: map,
+                // label: val.properties.mag.toString() // Whatever label you like. This one is the magnitude of the earthquake
+              });
+              var infowindow = new google.maps.InfoWindow({
+                content: "<h3>" + val.properties.title + "</h3><p><a href='" + "https://www.google.co.uk" + "'>Details</a></p>"
+              });
+              marker.addListener('click', function(data) {
+                infowindow.open(map, marker); // Open the Google maps marker infoWindow
+              });
+              markers[i++] = marker; // Add the marker to array to be used by clusterer
+            });
+            var markerCluster = new MarkerClusterer(map, markers, {
+              imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+            });
+          }
+        });
+      });
+
+    </script>
+    <!-- Need the following code for clustering Google maps markers-->
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+
+
+    </script>
+    <!-- Need the following code for Google Maps. PLEASE INSERT YOUR OWN GOOGLE MAPS KEY BELOW -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoVXdgjypbUm8QOZnzlKMJhSNRlmkMJ3E&callback=initMap">
+
+
+    </script>
+    <br>
+
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+
+          <!-- Trigger the modal with a button -->
+          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">More info</button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <p>More info and guide can be found at: <a class="dropdown-item" href="Earthquake Map Tutorial.html" Style="background-color: #f1f1f1;">Earthquake Map Tutorial Page</a></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <br><br>
+  </body>
+
+
+  <footer class="footer mt-auto py-3">
+    <div class="container">
+      <span class="text-muted"><center>Copyright © Integrated Project 3 Group 13</center></span>
+    </div>
+  </footer>
+
+</html>

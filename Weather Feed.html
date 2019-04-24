@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="CSS/css.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <title> Weather Feed </title>
+  </head>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      display: block;
+      width: 100%;
+      min-height: 760px;
+      overflow: auto;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #weather-container {
+      display: block;
+      width: 80%;
+      min-height: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .two-rows {
+      display: block;
+      overflow: auto;
+      width: 100%;
+      min-height: 170px;
+      margin: 0px;
+      padding: 15px 0px 0px 0px;
+    }
+
+    .two-rows:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .basicInfo {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .name-row1,
+    .name-row2 {
+      width: 100%;
+      color: #2196F3;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      height: 30px;
+      bottom: auto;
+      padding: 0px;
+      margin: 0px;
+    }
+
+    #title-page {
+      width: 100%;
+      color: #000;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      height: 30px;
+      bottom: auto;
+      padding-left: 15px;
+      margin: 0px;
+    }
+
+    #col-1 {
+      float: left;
+      width: 50%;
+      padding-left: 150px;
+      margin: 0px;
+      min-height: 170px;
+    }
+
+    #col-2 {
+      float: left;
+      width: 50%;
+      min-height: 170px;
+      padding-right: 150px;
+      margin: 0px;
+    }
+
+    #weatherImage {
+      float: left;
+      text-align: right;
+      padding-top: 15px;
+      padding-right: 5px;
+      width: 45%;
+      height: 70px;
+    }
+
+    #weatherCondition {
+      float: left;
+      text-align: left;
+      padding-top: 35px;
+      padding-left: 10px;
+      width: 55%;
+      height: 70px;
+    }
+
+    #temperature {
+      float: left;
+      text-align: right;
+      padding-right: 0px;
+      width: 60%;
+      height: 100px;
+    }
+
+    #celsius {
+      float: left;
+      width: 40%;
+      margin-top: 0px;
+      padding: 0px;
+      height: 100px;
+    }
+
+    .rows-table {
+      width: 80%;
+      height: 65px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .img0,
+    .img1,
+    .img2,
+    .img3,
+    .img4,
+    .img5,
+    .img5,
+    .img6,
+    .img7 {
+      float: left;
+      width: 35%;
+      height: 60px;
+      padding-left: 55px;
+      margin: 0px;
+      text-align: left;
+    }
+
+    .text0,
+    .text1,
+    .text2,
+    .text3,
+    .text4,
+    .text5,
+    .text6,
+    .text7 {
+      float: left;
+      width: 30%;
+      height: 60px;
+      padding-top: 20px;
+      padding-left: 30px;
+      margin: 0px;
+    }
+
+    .more-info0,
+    .more-info1,
+    .more-info2,
+    .more-info3,
+    .more-info4,
+    .more-info5,
+    .more-info6,
+    .more-info7 {
+      float: left;
+      width: 35%;
+      height: 60px;
+      padding-top: 20px;
+      padding-left: 125px;
+      font-weight: bold;
+      margin: 0px;
+    }
+
+    #search-container {
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 15px;
+      margin-top: 20px;
+      height: auto;
+      width: 80%;
+      border-bottom-style: 2px solid #eee;
+    }
+
+    #displayResult {
+      width: 25%;
+      height: 70%;
+      float: left;
+      margin-top: 5px;
+      padding: 10px 0 0 15px;
+    }
+
+    #inputContainer {
+      width: 100%;
+      height: 50%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-bottom: 5px;
+      padding-top: 5px;
+      border-bottom-style: 2px solid #eee;
+    }
+
+    #input {
+      padding: 5px 15px;
+      margin: 4px 2px;
+      width: 60%;
+      border: 2px solid #eee;
+      height: 35px;
+    }
+
+    #search {
+      background-color: #0a6ebd;
+      border: none;
+      color: white;
+      padding: 5px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      width: 110px;
+      height: 35px;
+    }
+
+    #search:hover {
+      background-color: #0a7dff;
+      border: none;
+    }
+
+    #temperature p {
+      font-size: 46px;
+      color: #000;
+    }
+
+    h5,
+    h6 {
+      color: #737373;
+      margin-left: 5px;
+      padding: 5px;
+      letter-spacing: 0.1em;
+    }
+
+    h3,
+    h2 {
+      font-weight: bold;
+      margin-left: 5px;
+      margin-top: 15px;
+      padding: 5px;
+    }
+
+    .more-info0,
+    .more-info1,
+    .more-info2,
+    .more-info3,
+    .more-info4,
+    .more-info5,
+    .more-info6,
+    .more-info7 p {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+  </style>
+
+  <body>
+
+    <!--Start Navigation-->
+
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="Overview.html"><b><i>Data Visualisation Solutions</b></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+
+          <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item active">
+              <a class="nav-link" href="Overview.html">Overview</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="Earthquakes Map.html">Earthquakes Map</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="Weather Feed.html">Weather Feed</a>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Visualisations
+      </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="Pollution Level.html">Pollution Level View</a>
+                <a class="dropdown-item" href="Petition.html">Revoke Article 50 Petition</a>
+                <a class="dropdown-item" href="Artist Top Songs.html">Artist Top Songs</a>
+                <a class="dropdown-item" href="Population.html">World Population</a>
+              </div>
+            </li>
+
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+       Tutorials
+      </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="Earthquake Map Tutorial.html">Earthquake Map Tutorial</a>
+                <a class="dropdown-item" href="Weather Feed Tutorial.html">Weather Feed Tutorial</a>
+                <a class="dropdown-item" href="Pollution Level Tutorial.html">Pollution Level View Tutorial</a>
+                <a class="dropdown-item" href="Petition Tutorial.html">Revoke Article 50 Petition Tutorial</a>
+                <a class="dropdown-item" href="Artist Top Songs Tutorial.html">Artist Top Songs Tutorial</a>
+                <a class="dropdown-item" href="PopulationTutorial.html">Population Tutorial</a>
+              </div>
+            </li>
+
+
+
+            <li class="nav-item">
+              <a class="nav-link" href="About Authors.html">About Authors</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="Contact Us.html">Contact Us</a>
+            </li>
+
+
+          </ul>
+        </div>
+    </nav>
+
+    <!--CONTENT FOR WEATHER-->
+    <br>
+    <h1>
+      <center><b>Weather Forecast</b> </h1>
+    </center>
+    <div id="search-container">
+
+
+      <p><i> Type in any location to check today's weather</i></p>
+      <div id="inputContainer">
+        <input type="text" id="input" name="input" placeholder="Enter a city name...">
+        <button type="button" id="search" value="Submit">Search</button>
+      </div>
+      <div id="info"></div>
+    </div>
+
+    <div id="weather-container">
+
+      <div class="two-rows">
+        <div class="name-row1"></div>
+        <div class="basicInfo">
+          <div id="col-1"></div>
+          <div id="col-2">
+            <div id="weatherImage"></div>
+            <div id="weatherCondition"></div>
+            <div id="temperature"></div>
+            <div id="celsius"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="two-rows">
+        <div class="name-row2"></div>
+        <div class="rows-table">
+          <div class="img0"></div>
+          <div class="text0"></div>
+          <div class="more-info0"></div>
+        </div>
+        <div class="rows-table">
+          <div class="img1"></div>
+          <div class="text1"></div>
+          <div class="more-info1"></div>
+        </div>
+        <div class="rows-table">
+          <div class="img2"></div>
+          <div class="text2"></div>
+          <div class="more-info2"></div>
+        </div>
+        <div class="rows-table">
+          <div class="img3"></div>
+          <div class="text3"></div>
+          <div class="more-info3"></div>
+        </div>
+        <div class="rows-table">
+          <div class="img4">
+            </i>
+          </div>
+          <div class="text4"></div>
+          <div class="more-info4"></div>
+        </div>
+        <div class="rows-table">
+          <div class="img5"></div>
+          <div class="text5"></div>
+          <div class="more-info5"></div>
+        </div>
+        <div class="rows-table">
+          <div class="img6">
+            </i>
+          </div>
+          <div class="text6"></div>
+          <div class="more-info6"></div>
+        </div>
+        <div class="rows-table">
+          <div class="img7">
+            </i>
+          </div>
+          <div class="text7"></div>
+          <div class="more-info7"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function() {
+        // execute when user clicks on search button
+        $("#search").click(function() {
+          // find out the searchterm
+          var searchLocation = $('#input').val();
+
+          // get data from user
+          $.ajax({
+            url: "https://api.apixu.com/v1/current.json?key=c1f67b5a96ce485093a140010191802&q=" + searchLocation,
+            type: "get",
+            dataType: "json",
+            error: function() {
+              $('#info').html('<p>An error has occurred</p>');
+            },
+            success: function(data) {
+              console.log(data);
+
+              image = new Image();
+              if (data.error) {
+                image.src = "http://via.placeholder.com/64x64?text=%20"; // Error, so we use blank image for weather. See 'error:' below for another way to include a small blank image
+              } else {
+                image.src = "http:" + data.current.condition.icon; // icon is specified within the data
+
+                // add name for current's forecast div and more information div
+                var nameRow1 = $("<h6 />", {
+                  text: "Today's Forecast"
+                });
+
+                var nameRow2 = $("<h6 />", {
+                  text: "More information"
+                });
+
+                //get external data from api 
+                var nameLocalisation = "<h3>" + data.location.name + "</h3>";
+
+                var nameCountry = "<h6>" + data.location.country + "</h6>";
+
+                var time = "<h6>" + data.location.localtime + "</h6>";
+
+                var conditionText = "<h6>" + data.current.condition.text + "</h6>";
+
+                var temp = "<p>" + data.current.temp_c + "</p>";
+
+                var tempFTitle = $("<h6 />", {
+                  text: "Temperature [F] "
+                });
+
+                var tempF = "<p>" + data.current.temp_f + " F" + "</p>"
+
+                var rainTitle = $("<h6 />", {
+                  text: "Chance of Rain"
+                });
+                var rain = "<p>" + data.current.precip_in + " %" + "</p>";
+
+                var windTitle = $("<h6 />", {
+                  text: "Wind"
+                });
+                var wind = "<p>" + data.current.wind_kph + " kph" + "</p>";
+
+                var pressureTitle = $("<h6 />", {
+                  text: "Pressure"
+                });
+                var pressure = "<p>" + data.current.pressure_mb + " mb" + "</p>";
+
+                var humidityTitle = $("<h6 />", {
+                  text: "Humidity"
+                });
+                var humidity = "<p>" + data.current.humidity + " %" + "</p>";
+
+                var visabilityTitle = $("<h6 />", {
+                  text: "Visability"
+                });
+                var visability = "<p>" + data.current.vis_km + " km" + "</p>";
+
+                var feelsTitle = $("<h6 />", {
+                  text: "Feels like"
+                });
+                var feels = "<p>" + data.current.feelslike_c + " C" + "</p>";
+
+                var uvTitle = $("<h6 />", {
+                  text: "UV index"
+                });
+                var uv = "<p>" + data.current.uv + "</p>";
+
+                //display external data from API
+                $(".name-row1").append(nameRow1);
+
+                $(".name-row2").append(nameRow2);
+
+                $("#col-1").append(nameLocalisation).append(nameCountry).append(time);
+
+                $("#weatherCondition").append(conditionText);
+
+                $("#temperature").append(temp);
+
+                $("#celsius").html('<img src="icons/wi-celsius.svg" width="55" height="55">');
+
+                $(".img0").html('<img src="icons/wi-thermometer.svg" width="55" height="55">');
+                $(".text0").append(tempFTitle);
+                $(".more-info0").append(tempF);
+
+                $(".img1").html('<img src="icons/wi-rain.svg" width="55" height="55">');
+                $(".text1").append(rainTitle);
+                $(".more-info1").append(rain);
+
+                $(".img2").html('<img src="icons/wi-strong-wind.svg" width="55" height="55">');
+                $(".text2").append(windTitle);
+                $(".more-info2").append(wind);
+
+                $(".img3").html('<img src="icons/wi-barometer.svg" width="55" height="55">');
+                $(".text3").append(pressureTitle);
+                $(".more-info3").append(pressure);
+
+                $(".img4").html('<img src="icons/wi-humidity.svg" width="55" height="55">');
+                $(".text4").append(humidityTitle);
+                $(".more-info4").append(humidity);
+
+                $(".img5").html('<img src="icons/wi-fog.svg" width="55" height="55">');
+                $(".text5").append(visabilityTitle);
+                $(".more-info5").append(visability);
+
+                $(".img6").html('<img src="icons/wi-thermometer.svg" width="55" height="55">');
+                $(".text6").append(feelsTitle);
+                $(".more-info6").append(feels);
+
+                $(".img7").html('<img src="icons/wi-day-sunny.svg" width="55" height="55">');
+                $(".text7").append(uvTitle);
+                $(".more-info7").append(uv);
+
+                //add style for div
+                $(".name-row1").css('background-color', '#eee');
+                $(".name-row2").css('background-color', '#eee');
+              }
+              //clear after each new search
+              image.onload = function() {
+                $(".name-row1").empty().append(nameRow1);
+                $(".name-row2").empty().append(nameRow2);
+                $('#weatherImage').empty().append(image);
+                $("#col-1").empty().append(nameLocalisation).append(nameCountry).append(time);
+                $('#weatherCondition').empty().append(conditionText);
+                $("#temperature").empty().append(temp);
+                $(".text0").empty().append(tempFTitle);
+                $(".more-info0").empty().append(tempF);
+                $(".text1").empty().append(rainTitle);
+                $(".more-info1").empty().append(rain);
+                $(".text2").empty().append(windTitle);
+                $(".more-info2").empty().append(wind);
+                $(".text3").empty().append(pressureTitle);
+                $(".more-info3").empty().append(pressure);
+                $(".text4").empty().append(humidityTitle);
+                $(".more-info4").empty().append(humidity);
+                $(".text5").empty().append(visabilityTitle);
+                $(".more-info5").empty().append(visability);
+                $(".text6").empty().append(feelsTitle);
+                $(".more-info6").empty().append(feels);
+                $(".text7").empty().append(uvTitle);
+                $(".more-info7").empty().append(uv);
+              };
+            },
+
+            error: function() { // Weather service could not provide weather for requested lat,lon world location
+              image = new Image();
+              // A local 64*64 transparent image. Generated from the useful site: http://png-pixel.com/
+              image.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAAPElEQVR42u3OMQEAAAgDIJfc6BpjDyQgt1MVAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBgXbgARTAX8ECcrkoAAAAAElFTkSuQmCC";
+
+              image.onload = function() {
+                //set the image into the web page
+                $('#weatherImage').empty().append(image);
+              };
+            }
+          });
+        });
+      });
+
+    </script>
+
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+
+          <!-- Trigger the modal with a button -->
+          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">More info</button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <p>More info and guide can be found at: <a class="dropdown-item" href="Weather Feed Tutorial.html" Style="background-color: #f1f1f1;">Weather Feed Tutorial Page</a></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <br><br><br>
+
+  </body>
+  </div>
+  </div>
+  </div>
+  <footer class="footer mt-auto py-3">
+    <div class="container">
+      <span class="text-muted"><center>© Copyright Group 13</center></span>
+    </div>
+  </footer>
+
+</html>

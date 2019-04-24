@@ -1,0 +1,54 @@
+h1 {
+	color:blue;
+	font-size: 20px;
+	font-style: italic;
+	
+}
+
+.ui-tabs
+.ui-tabs-nav li
+.ui-tabs-active a {
+    color: #0000ff;;
+}
+
+body{
+	
+	background: url('background.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.jumbotron{
+	background: none;
+
+}
+
+.navbar-brand{
+	
+	font-family: Impact, sans-serif;
+	
+}
+
+ul{
+	background-color: #bdd5fc;
+}
+
+hr.new3 {
+  border-top: 1px dotted black;
+}
+
+
+div.container-fluid{
+	background-color: #bdd5fc;
+}
+nav.navbar{
+	background-color:blue;
+}
+
+
+
+footer{
+	font-family: verdana;
+	position: sticky-bottom;
+	background-color:#bdd5fc;
+}
