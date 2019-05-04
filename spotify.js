@@ -71,7 +71,7 @@ $("bubbleChart").ready(function () {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      "Authorization": "Bearer BQDxKNAoZdfQKs0kCvlfYVHCM7W6UXUv26yzBO3gGWulSb2yxNZUdjsjC9JIaaaULK6VxnTjTCB3H8m4lq6rJuExKzS6G0BQO-OU9ZWMXsBuif222pz8X5lBty4HUXyQUTtvdTxuCh3w9MNJQTjjVX7nKeeZMY70XA"
+      "Authorization": "Bearer BQCHrRoOvNHNzc8CbLEDPHDI-BhQakkeEwom8j2c1XQUH_wM3LgZpGC7sxEJHLkE64euYRkberVp4F74dZsPbQ0tGg3sCpnhcYxzpm9KKNeIMWNa6yLg4Yt0I9k39q9LlVTttuNuMILxwb4B"
       //Because of way the spotify API authorization works, this TOKEN expires after 1 hour therefore it must be replaced, to get a new code visit 
       // https://developer.spotify.com/console/get-search-item/?q=abba&type=track&market=US&limit=&offset=   and request a new token at the bottom of the page.
 
@@ -93,7 +93,7 @@ $("bubbleChart").ready(function () {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          "Authorization": "Bearer BQDxKNAoZdfQKs0kCvlfYVHCM7W6UXUv26yzBO3gGWulSb2yxNZUdjsjC9JIaaaULK6VxnTjTCB3H8m4lq6rJuExKzS6G0BQO-OU9ZWMXsBuif222pz8X5lBty4HUXyQUTtvdTxuCh3w9MNJQTjjVX7nKeeZMY70XA"
+          "Authorization": "Bearer BQCHrRoOvNHNzc8CbLEDPHDI-BhQakkeEwom8j2c1XQUH_wM3LgZpGC7sxEJHLkE64euYRkberVp4F74dZsPbQ0tGg3sCpnhcYxzpm9KKNeIMWNa6yLg4Yt0I9k39q9LlVTttuNuMILxwb4B"
          //Because of way the spotify API authorization works, this TOKEN expires after 1 hour therefore it must be replaced, to get a new code visit 
       // https://developer.spotify.com/console/get-search-item/?q=abba&type=track&market=US&limit=&offset=   and request a new token at the bottom of the page.
         },
@@ -224,7 +224,7 @@ function updateData() {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      "Authorization": "Bearer BQDxKNAoZdfQKs0kCvlfYVHCM7W6UXUv26yzBO3gGWulSb2yxNZUdjsjC9JIaaaULK6VxnTjTCB3H8m4lq6rJuExKzS6G0BQO-OU9ZWMXsBuif222pz8X5lBty4HUXyQUTtvdTxuCh3w9MNJQTjjVX7nKeeZMY70XA"
+      "Authorization": "Bearer BQCHrRoOvNHNzc8CbLEDPHDI-BhQakkeEwom8j2c1XQUH_wM3LgZpGC7sxEJHLkE64euYRkberVp4F74dZsPbQ0tGg3sCpnhcYxzpm9KKNeIMWNa6yLg4Yt0I9k39q9LlVTttuNuMILxwb4B"
       //Because of way the spotify API authorization works, this TOKEN expires after 1 hour therefore it must be replaced, to get a new code visit 
       // https://developer.spotify.com/console/get-search-item/?q=abba&type=track&market=US&limit=&offset=   and request a new token at the bottom of the page.
     },
@@ -244,7 +244,7 @@ function updateData() {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          "Authorization": "Bearer BQDxKNAoZdfQKs0kCvlfYVHCM7W6UXUv26yzBO3gGWulSb2yxNZUdjsjC9JIaaaULK6VxnTjTCB3H8m4lq6rJuExKzS6G0BQO-OU9ZWMXsBuif222pz8X5lBty4HUXyQUTtvdTxuCh3w9MNJQTjjVX7nKeeZMY70XA"
+          "Authorization": "Bearer BQCHrRoOvNHNzc8CbLEDPHDI-BhQakkeEwom8j2c1XQUH_wM3LgZpGC7sxEJHLkE64euYRkberVp4F74dZsPbQ0tGg3sCpnhcYxzpm9KKNeIMWNa6yLg4Yt0I9k39q9LlVTttuNuMILxwb4B"
           //Because of way the spotify API authorization works, this TOKEN expires after 1 hour therefore it must be replaced, to get a new code visit 
       // https://developer.spotify.com/console/get-search-item/?q=abba&type=track&market=US&limit=&offset=   and request a new token at the bottom of the page.
         },
