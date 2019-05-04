@@ -322,7 +322,7 @@
                 // label: val.properties.mag.toString() // Whatever label you like. This one is the magnitude of the earthquake
               });
               var infowindow = new google.maps.InfoWindow({
-                content: "<h3>" + val.properties.title + "</h3><p><a href='" + "https://www.google.co.uk" + "'>Details</a></p>"
+                content: "<h3>" + val.properties.title + "</h3><p><a href='" + val.properties.url + "'>Details</a></p>"
               });
               marker.addListener('click', function(data) {
                 infowindow.open(map, marker); // Open the Google maps marker infoWindow
